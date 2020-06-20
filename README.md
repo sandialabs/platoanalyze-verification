@@ -1,2 +1,2 @@
-# VandV
-verification and validation problems
+# verification
+verification problems for Plato Analyze
