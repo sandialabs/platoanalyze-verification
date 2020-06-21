@@ -1,0 +1,53 @@
+<ParameterList name="Problem">
+  <Parameter name="Physics" type="string" value="Plato Driver"/>
+  <Parameter  name="Spatial Dimension"    type="int"    value="3"/>
+
+  <Parameter name="Input Mesh" type="string" value="./soap.exo"/>
+
+  <ParameterList name="Plato Problem">
+    <Parameter name="Physics"         type="string"  value="Thermal"/>
+    <Parameter name="PDE Constraint"  type="string"  value="Elliptic"/>
+    <Parameter name="Objective"       type="string"  value="My Internal Thermal Energy"/>
+
+    <Parameter name="Self-Adjoint"       type="bool"    value="true"/>
+
+    <ParameterList name="My Internal Thermal Energy">
+      <Parameter name='Type' type='string' value='Scalar Function'/> 
+      <Parameter name='Scalar Function Type' type='string' value='Internal Thermal Energy'/>
+      <ParameterList name="Penalty Function">
+        <Parameter name="Type" type="string" value="SIMP"/>
+        <Parameter name="Exponent" type="double" value="1.0"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Elliptic">
+      <ParameterList name="Penalty Function">
+        <Parameter name="Type" type="string" value="SIMP"/>
+        <Parameter name="Exponent" type="double" value="1.0"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Material Model">
+      <ParameterList name="Thermal Conduction">
+        <Parameter  name="Thermal Conductivity" type="double" value="1.0e3"/>
+      </ParameterList>
+    </ParameterList>
+  
+    <ParameterList  name="Natural Boundary Conditions">
+      <ParameterList  name="Flux Boundary Condition">
+        <Parameter  name="Type"     type="string"   value="Uniform"/>
+        <Parameter  name="Value"    type="double"   value="1.0"/>
+        <Parameter  name="Sides"    type="string"   value="ss_2"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList  name="Essential Boundary Conditions">
+      <ParameterList  name="Fixed Temperature Boundary Condition">
+        <Parameter  name="Type"     type="string" value="Zero Value"/>
+        <Parameter  name="Sides"    type="string" value="ns_1440"/>
+      </ParameterList>
+    </ParameterList>
+  </ParameterList>
+
+</ParameterList>
+
