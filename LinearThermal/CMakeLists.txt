@@ -1,14 +1,20 @@
-# copy mesh files from current source dir to binary dir
-configure_file(  ${CMAKE_CURRENT_SOURCE_DIR}/block.xml
-                 ${CMAKE_CURRENT_BINARY_DIR}/block.xml COPYONLY)
-configure_file(  ${CMAKE_CURRENT_SOURCE_DIR}/amgx.json
-                 ${CMAKE_CURRENT_BINARY_DIR}/amgx.json COPYONLY)
-configure_file(  ${CMAKE_CURRENT_SOURCE_DIR}/block.exo
-                 ${CMAKE_CURRENT_BINARY_DIR}/block.exo COPYONLY)
+# copy files from current source dir to binary dir
+set( testFiles "block.xml;amgx.json;block.exo;plot.gnu;compare.py;solution.py;layout.png;index.dox" )
 
-set( CONFIG_FILE "block.xml" )
-set( RUN_TIME 0.7 )
-set( NUM_RUNS 10 )
+foreach( testFile ${testFiles} )
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${testFile} ${CMAKE_CURRENT_BINARY_DIR}/${testFile} COPYONLY)
+endforeach(testFile)
+
+# copy some verification test utility files
+configure_file(  ${CMAKE_SOURCE_DIR}/tests/verification/tools/line.py ${CMAKE_CURRENT_BINARY_DIR}/line.py COPYONLY)
+
+set( CONFIG_FILE "block.xml"   )  ## Plato Analyze input file
+set( OUTPUT_DIR  "output_data" )  ## Plato Analyze output directory
+set( COMPARE_PY  "compare.py"  )  ## verification script
+set( SOLUTION_PY "solution.py" )  ## paraview script for generating image of solution
+set( PLOT_GNU    "plot.gnu"    )  ## gnuplot plotting commands
+
+set( ERROR_TOLERANCE 1e-8 )
 
 get_filename_component(testDirName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 set( TEST_NAME ${testDirName} )
@@ -18,6 +24,9 @@ add_test( NAME ${TEST_NAME}
           COMMAND ${CMAKE_COMMAND}
           -DANALYZE_EXECUTABLE=${CMAKE_BINARY_DIR}/analyze
           -DCONFIG_FILE=${CONFIG_FILE}
-          -DRUN_TIME=${RUN_TIME}
-          -DNUM_RUNS=${NUM_RUNS}
-          -P ${CMAKE_SOURCE_DIR}/tests/timer.cmake )
+          -DOUTPUT_DIR=${OUTPUT_DIR}
+          -DCOMPARE_PY=${COMPARE_PY}
+          -DSOLUTION_PY=${SOLUTION_PY}
+          -DERROR_TOLERANCE=${ERROR_TOLERANCE}
+          -DPLOT_GNU=${PLOT_GNU}
+          -P ${CMAKE_SOURCE_DIR}/tests/verification/tools/verify.cmake )

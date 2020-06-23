@@ -2,7 +2,7 @@
   <Parameter name="Physics" type="string" value="Plato Driver"/>
   <Parameter  name="Spatial Dimension"    type="int"    value="3"/>
 
-  <Parameter name="Input Mesh" type="string" value="./soap.exo"/>
+  <Parameter name="Input Mesh" type="string" value="./block.exo"/>
 
   <ParameterList name="Plato Problem">
     <Parameter name="Physics"         type="string"  value="Thermal"/>
@@ -37,14 +37,14 @@
       <ParameterList  name="Flux Boundary Condition">
         <Parameter  name="Type"     type="string"   value="Uniform"/>
         <Parameter  name="Value"    type="double"   value="1.0"/>
-        <Parameter  name="Sides"    type="string"   value="ss_2"/>
+        <Parameter  name="Sides"    type="string"   value="x0"/>
       </ParameterList>
     </ParameterList>
 
     <ParameterList  name="Essential Boundary Conditions">
       <ParameterList  name="Fixed Temperature Boundary Condition">
         <Parameter  name="Type"     type="string" value="Zero Value"/>
-        <Parameter  name="Sides"    type="string" value="ns_1440"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
       </ParameterList>
     </ParameterList>
   </ParameterList>
