@@ -64,7 +64,7 @@ renderView1.CameraViewUp = [-0.19924057811635842, 0.9124190832933381, -0.3574837
 renderView1.CameraParallelScale = 1.224744871391589
 
 # save screenshot
-SaveScreenshot('LinearThermal_solution.png', renderView1, ImageResolution=[1225, 800])
+SaveScreenshot('NonlinearThermal_solution.png', renderView1, ImageResolution=[1225, 800])
 
 #### saving camera placements for all active views
 

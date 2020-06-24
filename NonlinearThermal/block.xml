@@ -1,0 +1,57 @@
+<ParameterList name="Problem">
+  <Parameter name="Physics" type="string" value="Plato Driver"/>
+  <Parameter  name="Spatial Dimension"    type="int"    value="3"/>
+
+  <Parameter name="Input Mesh" type="string" value="./block.exo"/>
+
+  <ParameterList name="Plato Problem">
+    <Parameter name="Physics"         type="string"  value="Thermal"/>
+    <Parameter name="PDE Constraint"  type="string"  value="Elliptic"/>
+    <Parameter name="Objective"       type="string"  value="My Internal Thermal Energy"/>
+
+    <Parameter name="Self-Adjoint"       type="bool"    value="true"/>
+
+    <ParameterList name="My Internal Thermal Energy">
+      <Parameter name='Type' type='string' value='Scalar Function'/> 
+      <Parameter name='Scalar Function Type' type='string' value='Internal Thermal Energy'/>
+      <ParameterList name="Penalty Function">
+        <Parameter name="Type" type="string" value="SIMP"/>
+        <Parameter name="Exponent" type="double" value="1.0"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Elliptic">
+      <ParameterList name="Penalty Function">
+        <Parameter name="Type" type="string" value="SIMP"/>
+        <Parameter name="Exponent" type="double" value="1.0"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Material Model">
+      <ParameterList name="Thermal Conduction">
+        <Parameter name="Temperature Dependent" type="bool" value="true"/>
+        <ParameterList name="Thermal Conductivity">
+          <Parameter name="c011" type="double" value="205.0"/>
+          <Parameter name="c111" type="double" value="-0.02"/>
+          <Parameter name="c211" type="double" value="0.0008"/>
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+  
+    <ParameterList  name="Essential Boundary Conditions">
+      <ParameterList  name="x0 Fixed Temperature Boundary Condition">
+        <Parameter  name="Type"     type="string" value="Fixed Value"/>
+        <Parameter  name="Value"    type="double" value="250.0"/>
+        <Parameter  name="Sides"    type="string" value="x0"/>
+        <Parameter  name="Index"    type="int"    value="0"/>
+      </ParameterList>
+      <ParameterList  name="x1 Fixed Temperature Boundary Condition">
+        <Parameter  name="Type"     type="string" value="Zero Value"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
+        <Parameter  name="Index"    type="int"    value="0"/>
+      </ParameterList>
+    </ParameterList>
+  </ParameterList>
+
+</ParameterList>
+

@@ -2,7 +2,7 @@
 set(ImageDirs ${ImageDirs} ${CMAKE_CURRENT_BINARY_DIR} PARENT_SCOPE)
 
 # copy files from current source dir to binary dir
-set( testFiles "block.xml;amgx.json;block.exo;plot.gnu;compare.py;solution.py;LinearThermal_layout.png;index.dox" )
+set( testFiles "block.xml;amgx.json;block.exo;plot.gnu;compare.py;solution.py;NonlinearThermal_layout.png;index.dox" )
 
 foreach( testFile ${testFiles} )
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${testFile} ${CMAKE_CURRENT_BINARY_DIR}/${testFile} COPYONLY)
