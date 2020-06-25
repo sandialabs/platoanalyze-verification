@@ -1,0 +1,119 @@
+<ParameterList name="Problem">
+  <Parameter name="Physics" type="string" value="Plato Driver"/>
+  <Parameter  name="Spatial Dimension"    type="int"    value="3"/>
+
+  <Parameter name="Input Mesh" type="string" value="1dbar.exo"/>
+
+  <ParameterList name="Plato Problem">
+    <Parameter name="Physics"            type="string"  value="Thermomechanical"/>
+    <Parameter name="PDE Constraint"     type="string"  value="Parabolic"/>
+
+    <ParameterList name="Time Integration">
+      <Parameter name="Number Time Steps" type="int" value="20"/>
+      <Parameter name="Time Step" type="double" value="300.0"/>
+      <Parameter name="Trapezoid Alpha" type="double" value="0.5"/>
+    </ParameterList>
+
+    <ParameterList name="Newton Iteration">
+      <Parameter name="Maximum Iterations" type="int" value="2"/>
+      <Parameter name="Increment Tolerance" type="double" value="1e-4"/>
+    </ParameterList>
+
+    <ParameterList name="Parabolic">
+      <Parameter  name="Plottable" type="Array(string)" value="{strain,stress}"/>
+      <ParameterList name="Penalty Function">
+        <Parameter name="Type" type="string" value="SIMP"/>
+        <Parameter name="Exponent" type="double" value="3.0"/>
+        <Parameter name="Minimum Value" type="double" value="1.0e-3"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Material Model">
+      <ParameterList name="Thermal Mass">
+        <Parameter name="Specific Heat" type="double" value="900.0"/>
+        <Parameter name="Mass Density" type="double" value="2700.0"/>
+      </ParameterList>
+      <ParameterList name="Thermoelastic">
+        <Parameter name="Temperature Dependent" type="bool" value="true"/>
+        <Parameter name="Reference Temperature" type="double" value="0.0"/>
+        <ParameterList name="Thermal Conductivity">
+          <Parameter name="c011" type="double" value="205.0"/>
+          <Parameter name="c111" type="double" value="-0.02"/>
+          <Parameter name="c211" type="double" value="0.0008"/>
+        </ParameterList>
+        <ParameterList name="Thermal Expansivity">
+          <Parameter name="c011" type="double" value="22.06e-6"/>
+          <Parameter name="c111" type="double" value="3.9309e-8"/>
+          <Parameter name="c211" type="double" value="-7.82412e-11"/>
+        </ParameterList>
+        <ParameterList name="Elastic Stiffness">
+          <ParameterList name="Youngs Modulus">
+            <Parameter name="c0" type="double" value="6.90342e10"/>
+            <Parameter name="c1" type="double" value="-3.33342e7"/>
+            <Parameter name="c2" type="double" value="-1.26564e4"/>
+          </ParameterList>
+          <Parameter name="Poissons Ratio" type="double" value="0.35"/>
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+
+<!--
+    <ParameterList  name="Computed Fields">
+      <ParameterList  name="Initial Temperature">
+        <Parameter  name="Function" type="string"   value="0.0"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList  name="Initial State">
+      <ParameterList  name="Temperature">
+        <Parameter  name="Computed Field" type="string" value="Initial Temperature"/>
+      </ParameterList>
+    </ParameterList>
+-->
+  
+    <ParameterList  name="Essential Boundary Conditions">
+      <ParameterList  name="X Fixed Displacement at x0">
+        <Parameter  name="Type"     type="string" value="Zero Value"/>
+        <Parameter  name="Index"    type="int"    value="0"/>
+        <Parameter  name="Sides"    type="string" value="x0"/>
+      </ParameterList>
+      <ParameterList  name="Fixed Temperature at x0">
+        <Parameter  name="Type"     type="string" value="Fixed Value"/>
+        <Parameter  name="Value"    type="double" value="250.0"/>
+        <Parameter  name="Index"    type="int"    value="3"/>
+        <Parameter  name="Sides"    type="string" value="x0"/>
+      </ParameterList>
+
+      <ParameterList  name="X Fixed Displacement at x1">
+        <Parameter  name="Type"     type="string" value="Zero Value"/>
+        <Parameter  name="Index"    type="int"    value="0"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
+      </ParameterList>
+      <ParameterList  name="Y Fixed Displacement at x1">
+        <Parameter  name="Type"     type="string" value="Zero Value"/>
+        <Parameter  name="Index"    type="int"    value="1"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
+      </ParameterList>
+      <ParameterList  name="Z Fixed Displacement at x1">
+        <Parameter  name="Type"     type="string" value="Zero Value"/>
+        <Parameter  name="Index"    type="int"    value="2"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
+      </ParameterList>
+      <ParameterList  name="Fixed Temperature at x1">
+        <Parameter  name="Type"     type="string" value="Fixed Value"/>
+        <Parameter  name="Value"    type="double" value="0.0"/>
+        <Parameter  name="Index"    type="int"    value="3"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
+      </ParameterList>
+    </ParameterList>
+<!--
+    <ParameterList name='Linear Solver'>
+      <Parameter name='Solver' type='string' value='AztecOO'/>
+      <Parameter name='Display Iterations' type='int' value='10'/>
+      <Parameter name='Iterations' type='int' value='500'/>
+      <Parameter name='Tolerance' type='double' value='1e-8'/>
+    </ParameterList>
+-->
+  </ParameterList>
+
+</ParameterList>

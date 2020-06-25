@@ -3,8 +3,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/index.dox ${CMAKE_CURRENT_BINAR
 
 set(ImageDirs) ## this variable accumulates a list of directories that may have images for doxygen.
 
-ADD_SUBDIRECTORY(LinearThermal)
-ADD_SUBDIRECTORY(NonlinearThermal)
+ADD_SUBDIRECTORY(Thermal/LinearThermal)
+ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
+ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
+ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
 
 # modify the list of ImageDirs to be space delimited instead of semicolon delimited.
 string(REPLACE ";" " " ImageDirs "${ImageDirs}")

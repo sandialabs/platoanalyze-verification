@@ -11,6 +11,8 @@
 <ul>
 <li> \ref PA_Verification_LinearThermal </li>
 <li> \ref PA_Verification_NonlinearThermal </li>
+<li> \ref PA_Verification_Thermomechanics_NonlinearBar </li>
+<li> \ref PA_Verification_Thermomechanics_StaticNonlinearBar </li>
 </ul>
 
 */

@@ -1,0 +1,15 @@
+## /home/jrobbin/opt/cubit/15.3/bin/cubitx
+## Cubit Version 15.3
+## Cubit Build 413520
+## Revised 2018-09-20 09:38:41 -0600 (Thu, 20 Sep 2018)
+## Running 06/09/2020 01:18:06 PM
+## Command Options:
+create brick x 1 y 0.05 z 0.05
+volume all scheme tetmesh
+volume all size 0.0125
+mesh volume all
+sideset 2 surface 6
+sideset 2 name "x1"
+sideset 1 surface 4
+sideset 1 name "x0"
+export mesh "1dbar.exo" overwrite

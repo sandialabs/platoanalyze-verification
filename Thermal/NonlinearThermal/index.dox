@@ -1,0 +1,72 @@
+/**
+\page PA_Verification_NonlinearThermal Nonlinear thermal
+
+<ul>
+<li> <b>Problem definition:</b> </li>
+The heat equation with temperature dependent conduction is given by:
+
+\f$ \rho C \dot{T} = \nabla \cdot \left( k\left(T\right) \nabla T \right) \f$
+
+where \f$ k\left(T\right) \f$ is the thermal conduction coefficient, \f$ \rho \f$ is the mass density, and \f$ C \f$ is the specific heat capacity.  
+At steady state (i.e., \f$ \dot{T}=0 \f$) this reduces to
+
+\f$ \nabla \cdot \left( k\left(T\right) \nabla T \right) = 0 \f$ on \f$ \Omega \f$
+
+with boundary conditions:
+
+\f$ T(\bar{x}) = T^{x0} \f$ on \f$ \Gamma^{x0} \f$ \n
+\f$ T(\bar{x}) = T^{x1} \f$ on \f$ \Gamma^{x1} \f$ \n
+\f$ -k(T) \nabla T \cdot \hat{n} = 0 \f$ on \f$ \Gamma^f \f$
+
+where
+
+\f$ \Omega = (0,1) \times (-1/10, 1/10) \times (-1/10, 1/10) \f$ \n
+\f$ \Gamma^{x0} = \left\{ \bar{x}\ |\ x_0 = 0 \right\} \f$ \n
+\f$ \Gamma^{x1} = \left\{ \bar{x}\ |\ x_0 = 1 \right\} \f$ \n
+\f$ \Gamma^f = \partial \Omega \cap ( \Gamma^{x0} \cup \Gamma^{x1} ) \f$.
+
+The domain and boundary conditions reduce to a one-dimensional problem:
+
+\f$ \frac{d}{d x}\left(k\left(T\right) \frac{d T}{dx}\right) = 0 \f$ \n
+\f$ T(x) = T^f \f$ on \f$ x=0 \f$ \n
+\f$ T(x) = 0 \f$ on \f$ x=1 \f$ 
+
+The solution by integration is:
+
+\f$ k\left(T\right) \frac{dT}{dx}= C_1 \f$ \n
+\f$ \int k\left(T\right) dT = \int C_1 dx \f$
+
+Assuming a quadratic form \f$ k(T) = a_0 + a_1 T + a_2 T^2 \f$ yields: 
+
+\f$ a_0 T + \frac{1}{2} a_1 T^2 \frac{1}{3} a_2 T^3 = C_1 x + C_2 \f$
+
+which has one real root:
+
+\f$ T(x) = -\frac{a_1}{2 a_2} - \frac{-9 a_1^2 + 36 a_2 a_0}{3\times 2^{2/3} A} + \frac{A}{6\times 2^{1/3} a_2}  \f$ \n
+\f$ A = \left(B + \left(4\left(-9 a1^2+36 a_0 a_2\right)^3 + B^2\right)^{1/2}\right)^{1/3} \f$ \n
+\f$ B = -54 a_1^3 + 324 a_0 a_1 a_2 + 648 a_2^2 \left(C_1 x + C_2\right) \f$
+
+The boundary conditions provide values for \f$ C_1 \f$ and \f$ C_2 \f$:
+
+\f$ C_1 = -\frac{250}{3}\left(375 a_1 + 62500 a_2 + 3 a_0\right) \f$ \n
+\f$ C_2 = -C_1 \f$
+
+<li> <b>Comparison:</b> </li>
+This 1D problem is solved using Plato Analyze on a 3D mesh using the following data:
+
+\f$ T^f = 1\times 10^{-3} W/m^2 \f$ \n
+\f$ k = 1000 \ W/(m\cdot K) \f$ \n
+\f$ l = 2 \ m \f$
+
+
+The layout, solution, and comparison with the analytical solution is shown below:
+
+\image html ./NonlinearThermal_layout.png "Finite element mesh" width=600px
+\image latex ./NonlinearThermal_layout.png "Finite element mesh" width=10cm
+\image html ./NonlinearThermal_solution.png "Temperature solution" width=600px
+\image latex ./NonlinearThermal_solution.png "Temperature solution" width=10cm
+\image html ./NonlinearThermal_comparison.png "Computed vs Analytical" width=600px
+\image latex ./NonlinearThermal_comparison.eps "Computed vs Analytical" width=10cm
+
+</ul>
+*/
