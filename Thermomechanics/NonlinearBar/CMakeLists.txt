@@ -17,7 +17,10 @@ set( COMPARE_PY  "compare.py"  )  ## verification script
 set( SOLUTION_PY "solution.py" )  ## paraview script for generating image of solution
 set( PLOT_GNU    "plot.gnu"    )  ## gnuplot plotting commands
 
-set( ERROR_TOLERANCE 1e-8 )
+## Note: this test computes the thermal history from initial conditions to thermal 
+#        equilibration then compares against a steady-state solution.  Consequently,
+#        the agreement won't be as good as say a steady-state simulation.
+set( ERROR_TOLERANCE 1e2 )
 
 get_filename_component(testDirName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 set( TEST_NAME ${testDirName} )

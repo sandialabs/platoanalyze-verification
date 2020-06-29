@@ -26,7 +26,9 @@ T = 0.0    ## fixed temperature BC
 
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], 'Temperature')
+plotTime = 19.0
+variableName = 'Temperature'
+x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], variableName, plotTime)
 
 
 # sample analytical solution
