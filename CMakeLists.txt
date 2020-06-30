@@ -5,8 +5,8 @@ set(ImageDirs) ## this variable accumulates a list of directories that may have 
 
 ADD_SUBDIRECTORY(Thermal/LinearThermal)
 ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
-ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
 ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
+ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
 
 # modify the list of ImageDirs to be space delimited instead of semicolon delimited.
 string(REPLACE ";" " " ImageDirs "${ImageDirs}")

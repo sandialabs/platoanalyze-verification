@@ -54,9 +54,10 @@ The boundary conditions provide values for \f$ C_1 \f$ and \f$ C_2 \f$:
 <li> <b>Comparison:</b> </li>
 This 1D problem is solved using Plato Analyze on a 3D mesh using the following data:
 
-\f$ T^f = 1\times 10^{-3} W/m^2 \f$ \n
-\f$ k = 1000 \ W/(m\cdot K) \f$ \n
-\f$ l = 2 \ m \f$
+\f$ T^f = 250.0 K \f$ \n
+\f$ a0 = 205.0 W/(m\cdot K) \f$ \n
+\f$ a1 = -0.02 W/(m\cdot K)/T \f$ \n
+\f$ a2 = 0.0008 W/(m\cdot K)/T^2 \f$ \n
 
 
 The layout, solution, and comparison with the analytical solution is shown below:
