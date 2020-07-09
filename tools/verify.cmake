@@ -13,19 +13,21 @@ foreach( varName ${COMPARE_PY} )
     message(FATAL_ERROR "FAILED: ${TEST_COMMAND}")
   endif()
 
-  # generate solution image if SOLUTION_PY defined
-  message( "Generating image of problem solution.")
-  set( TEST_COMMAND "pvbatch --use-offscreen-rendering ${varName}_display.py" )
-  execute_process(COMMAND bash "-c" "${TEST_COMMAND}" RESULT_VARIABLE HAD_ERROR)
-  if (HAD_ERROR)
-    message("FAILED: ${TEST_COMMAND}")
-  endif()
+  if(DOXYGEN)
+    # generate solution image if SOLUTION_PY defined
+    message( "Generating image of problem solution.")
+    set( TEST_COMMAND "pvbatch --use-offscreen-rendering ${varName}_display.py" )
+    execute_process(COMMAND bash "-c" "${TEST_COMMAND}" RESULT_VARIABLE HAD_ERROR)
+    if (HAD_ERROR)
+      message("FAILED: ${TEST_COMMAND}")
+    endif()
 
-  #  generate comparison plots
-  set( TEST_COMMAND "gnuplot ${varName}_plot.gnu" )
-  execute_process(COMMAND bash "-c" "${TEST_COMMAND}" RESULT_VARIABLE HAD_ERROR)
-  if (HAD_ERROR)
-    message(FATAL_ERROR "FAILED: ${TEST_COMMAND}")
+    #  generate comparison plots
+    set( TEST_COMMAND "gnuplot ${varName}_plot.gnu" )
+    execute_process(COMMAND bash "-c" "${TEST_COMMAND}" RESULT_VARIABLE HAD_ERROR)
+    if (HAD_ERROR)
+      message(FATAL_ERROR "FAILED: ${TEST_COMMAND}")
+    endif()
   endif()
 endforeach()
 

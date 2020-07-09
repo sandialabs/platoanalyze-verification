@@ -29,4 +29,5 @@ add_test( NAME ${TEST_NAME}
           -DCONFIG_FILE=${CONFIG_FILE}
           -DOUTPUT_DIR=${OUTPUT_DIR}
           "-DCOMPARE_PY=${COMPARE_PY}"
+          -DDOXYGEN=${DOXYGEN}
           -P ${CMAKE_SOURCE_DIR}/tests/verification/tools/verify.cmake )
