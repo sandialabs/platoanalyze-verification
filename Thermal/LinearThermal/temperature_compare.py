@@ -19,7 +19,7 @@ x_data, y_data = line.getLineData('./output_data/steps.pvd', [-1, 0, 0], [1, 0, 
 
 
 # sample analytical solution
-a_data = [T + q/k*(l - x_data[i]) for i in range(len(x_data))]
+a_data = [T - q/k*(l - x_data[i]) for i in range(len(x_data))]
 
 # compute error norm
 error_norm = 0.0
