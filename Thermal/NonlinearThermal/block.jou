@@ -13,4 +13,5 @@ sideset 1 name "x0"
 sideset 2 surface 6
 sideset 2 name "x1"
 block 1 volume all
+block 1 name "block_1"
 export mesh "block.exo" overwrite

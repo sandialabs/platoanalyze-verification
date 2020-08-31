@@ -22,27 +22,38 @@
       </ParameterList>
     </ParameterList>
 
-    <ParameterList name="Material Model">
-      <ParameterList name="Thermoelastic">
-        <Parameter name="Temperature Dependent" type="bool" value="true"/>
-        <Parameter name="Reference Temperature" type="double" value="0.0"/>
-        <ParameterList name="Thermal Conductivity">
-          <Parameter name="c011" type="double" value="205.0"/>
-          <Parameter name="c111" type="double" value="-0.02"/>
-          <Parameter name="c211" type="double" value="0.0008"/>
+    <ParameterList name="Spatial Model">
+      <ParameterList name="Domains">
+        <ParameterList name="Design Volume">
+          <Parameter name="Element Block" type="string" value="block_1"/>
+          <Parameter name="Material Model" type="string" value="Aluminum"/>
         </ParameterList>
-        <ParameterList name="Thermal Expansivity">
-          <Parameter name="c011" type="double" value="22.06e-6"/>
-          <Parameter name="c111" type="double" value="3.9309e-8"/>
-          <Parameter name="c211" type="double" value="-7.82412e-11"/>
-        </ParameterList>
-        <ParameterList name="Elastic Stiffness">
-          <ParameterList name="Youngs Modulus">
-            <Parameter name="c0" type="double" value="6.90342e10"/>
-            <Parameter name="c1" type="double" value="-3.33342e7"/>
-            <Parameter name="c2" type="double" value="-1.26564e4"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Material Models">
+      <ParameterList name="Aluminum">
+        <ParameterList name="Thermoelastic">
+          <Parameter name="Temperature Dependent" type="bool" value="true"/>
+          <Parameter name="Reference Temperature" type="double" value="0.0"/>
+          <ParameterList name="Thermal Conductivity">
+            <Parameter name="c011" type="double" value="205.0"/>
+            <Parameter name="c111" type="double" value="-0.02"/>
+            <Parameter name="c211" type="double" value="0.0008"/>
           </ParameterList>
-          <Parameter name="Poissons Ratio" type="double" value="0.35"/>
+          <ParameterList name="Thermal Expansivity">
+            <Parameter name="c011" type="double" value="22.06e-6"/>
+            <Parameter name="c111" type="double" value="3.9309e-8"/>
+            <Parameter name="c211" type="double" value="-7.82412e-11"/>
+          </ParameterList>
+          <ParameterList name="Elastic Stiffness">
+            <ParameterList name="Youngs Modulus">
+              <Parameter name="c0" type="double" value="6.90342e10"/>
+              <Parameter name="c1" type="double" value="-3.33342e7"/>
+              <Parameter name="c2" type="double" value="-1.26564e4"/>
+            </ParameterList>
+            <Parameter name="Poissons Ratio" type="double" value="0.35"/>
+          </ParameterList>
         </ParameterList>
       </ParameterList>
     </ParameterList>

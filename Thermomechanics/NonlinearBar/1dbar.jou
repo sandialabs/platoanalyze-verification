@@ -12,4 +12,6 @@ sideset 2 surface 6
 sideset 2 name "x1"
 sideset 1 surface 4
 sideset 1 name "x0"
+block 1 volume all
+block 1 name "block_1"
 export mesh "1dbar.exo" overwrite

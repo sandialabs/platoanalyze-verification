@@ -32,13 +32,24 @@
       </ParameterList>
     </ParameterList>
 
-    <ParameterList name="Material Model">
-      <ParameterList name="Thermal Conduction">
-        <Parameter name="Temperature Dependent" type="bool" value="true"/>
-        <ParameterList name="Thermal Conductivity">
-          <Parameter name="c011" type="double" value="205.0"/>
-          <Parameter name="c111" type="double" value="-0.02"/>
-          <Parameter name="c211" type="double" value="0.0008"/>
+    <ParameterList name="Spatial Model">
+      <ParameterList name="Domains">
+        <ParameterList name="Design Volume">
+          <Parameter name="Element Block" type="string" value="block_1"/>
+          <Parameter name="Material Model" type="string" value="Aluminum"/>
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Material Models">
+      <ParameterList name="Aluminum">
+        <ParameterList name="Thermal Conduction">
+          <Parameter name="Temperature Dependent" type="bool" value="true"/>
+          <ParameterList name="Thermal Conductivity">
+            <Parameter name="c011" type="double" value="205.0"/>
+            <Parameter name="c111" type="double" value="-0.02"/>
+            <Parameter name="c211" type="double" value="0.0008"/>
+          </ParameterList>
         </ParameterList>
       </ParameterList>
     </ParameterList>
