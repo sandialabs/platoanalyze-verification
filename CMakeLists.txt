@@ -7,6 +7,7 @@ ADD_SUBDIRECTORY(Thermal/LinearThermal)
 ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
 ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
 ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
+ADD_SUBDIRECTORY(InherentStrain/2LayerNormal)
 
 # modify the list of ImageDirs to be space delimited instead of semicolon delimited.
 string(REPLACE ";" " " ImageDirs "${ImageDirs}")

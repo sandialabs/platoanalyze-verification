@@ -7,6 +7,7 @@ def getLineData(fileName, x0, x1, variable):
   variableDim  = variable.get('dim', 3)
   variableType = variable.get('type', 'scalar')
   variableTime = variable.get('time', 0.0)
+  variableComp = variable.get('component', 0)
 
   # create a new 'PVD Reader'
   stepspvd = PVDReader(FileName=fileName)
@@ -35,7 +36,7 @@ def getLineData(fileName, x0, x1, variable):
     y_Data = [fieldData.GetValue(i) for i in range(fieldData.GetSize())]
   elif variableType == 'vector':
     numEntries = fieldData.GetSize()/variableDim
-    y_Data = [fieldData.GetValue(i*variableDim) for i in range(numEntries)]
+    y_Data = [fieldData.GetValue(i*variableDim+variableComp) for i in range(numEntries)]
 
   return x_Data, y_Data
 

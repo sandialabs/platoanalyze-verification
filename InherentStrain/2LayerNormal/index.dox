@@ -1,0 +1,23 @@
+/**
+\page PA_Verification_2LayerNormal Two Layer Normal
+
+<ul>
+<li> <b>Problem definition:</b> </li>
+A single layer (thickness l=0.125) is deposited onto a substrate (thickness l=0.125).  The deposited layer has an inherent strain in the build direction (z) only of \f$ \epsilon^{IS} = 0.01\f$.  The bottom and top surfaces are fully constrained, and Poisson's ratio is zero, so the problem is effectively one-dimensional.  The displacement of the interface between the substrate and deposited layer is given by:
+
+\f$ u_c = \frac{l^2}{2l} \f$ \n
+
+The displacement as a function of the distance from the bottom surface is:
+
+\f$ u(z) = z \frac{u_c}{l} \ if \ 0<z<l \f$ \n
+\f$ u(z) = \frac{u_c}{l}\left(2l-z\right) \ if \ l<z<2l \f$ \n
+
+The layout, solution, and comparison with the analytical solution is shown below:
+
+\image html ./2LayerNormal_solution.png "Displacement solution" width=600px
+\image latex ./2LayerNormal_solution.png "Displacement solution" width=10cm
+\image html ./2LayerNormal_comparison.png "Computed vs Analytical" width=600px
+\image latex ./2LayerNormal_comparison.eps "Computed vs Analytical" width=10cm
+
+</ul>
+*/
