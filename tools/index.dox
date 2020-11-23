@@ -13,6 +13,8 @@ Introduction to %PlatoAnalyze.
 <li> \ref PA_Verification_NonlinearThermal </li>
 <li> \ref PA_Verification_Thermomechanics_StaticNonlinearBar </li>
 <li> \ref PA_Verification_Thermomechanics_NonlinearBar </li>
+<li> \ref PA_Verification_2LayerNormal </li>
+<li> \ref PA_Verification_2LayerShear </li>
 </ul>
 
 */
