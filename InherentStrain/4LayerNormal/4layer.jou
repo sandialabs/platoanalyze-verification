@@ -1,0 +1,26 @@
+## /home/jrobbin/opt/cubit/15.3/bin/cubitx
+## Cubit Version 15.3
+## Cubit Build 413520
+## Revised 2018-09-20 09:38:41 -0600 (Thu, 20 Sep 2018)
+## Running 11/19/2020 03:29:02 PM
+## Command Options:
+create brick x 1 y 1 z 1
+move volume all z 0.5
+move volume all z -0.25
+webcut volume all with plane zplane
+webcut volume all with plane zplane offset 0.25
+webcut volume all with plane zplane offset 0.5
+imprint all
+merge all
+volume all scheme tetmesh
+volume all size 0.025
+mesh volume all
+block 1 volume 2
+block 1 name "base"
+block 2 volume all except volume 2
+block 2 name "print"
+sideset 1 surface 2
+sideset 1 name "bottom"
+sideset 2 surface 1
+sideset 2 name "top"
+export mesh "4layer.exo" overwrite

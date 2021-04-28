@@ -1,0 +1,30 @@
+/**
+\page PA_Verification_2LayerShear Two Layer Shear
+
+<ul>
+<li> <b>Problem definition:</b> </li>
+A single layer (thickness l=0.05) is deposited onto a substrate (thickness l=0.05).  The deposited layer has an inherent strain in the build plane (x-y) of \f$ \epsilon^{IS}_xx = -0.01\f$.  The negative X face is fully constrained, and Poisson's ratio is zero, so the problem is effectively one-dimensional.  The curvature of the interface between the substrate and deposited layer is given by:
+
+\f$ \kappa = \frac{6(\epsilon_2 - \epsilon_1)(1+m)^2}{t\left(3(1+m)^2+(1+m n)(m^2+1/(mn)\right)} \f$ \n
+
+where \f$m\f$ is the ratio of the top layer thickness to bottom layer thickness, \f$n\f$ is the ratio of top layer stiffness to bottom layer stiffness, and \f$t\f$ is the total bilayer thickness.  \f$\epsilon_1\f$ and \f$\epsilon_2\f$ are the in-plane strains of the top and bottom layers, respectively.  For the comparison below, the constants are:
+
+\f$ m = 1 \f$ \n
+\f$ n = 1 \f$ \n
+\f$ t = 0.1 \f$ \n
+\f$ \epsilon_1 = -0.01 \f$ \n
+\f$ \epsilon_2 = 0 \f$
+
+The displacement as a function of the distance from the negative X surface is:
+
+\f$ u(x) = \frac{1}{\kappa}(1-\cos(x \kappa)) \f$ \n
+
+The layout, solution, and comparison with the analytical solution is shown below:
+
+\image html ./2LayerShear_solution.png "Displacement solution" width=600px
+\image latex ./2LayerShear_solution.png "Displacement solution" width=10cm
+\image html ./2LayerShear_comparison.png "Computed vs Analytical" width=600px
+\image latex ./2LayerShear_comparison.eps "Computed vs Analytical" width=10cm
+
+</ul>
+*/
