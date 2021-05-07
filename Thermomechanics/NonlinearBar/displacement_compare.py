@@ -123,7 +123,7 @@ def displacement(x):
 tolerance = 1e-2
 print "#L2_error_norm_tolerance:", tolerance
 
-variable = {'type': 'vector', 'dim': 3, 'name': 'Displacements', 'time': 19.0}
+variable = {'type': 'vector', 'dim': 3, 'name': 'displacement', 'time': 19.0}
 
 # get x, y data from results
 x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], variable)
