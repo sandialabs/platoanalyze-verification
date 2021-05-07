@@ -26,7 +26,7 @@ def temperature(x):
 tolerance = 1e-2
 print "#L2_error_norm_tolerance:", tolerance
 
-variable = {'name': 'Temperature'}
+variable = {'name': 'temperature'}
 
 # get x, y data from results
 x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], variable)

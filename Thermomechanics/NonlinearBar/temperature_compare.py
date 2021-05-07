@@ -33,7 +33,7 @@ q = 1.0    ## flux boundary condition
 T = 0.0    ## fixed temperature BC
 
 
-variable = {'name': 'Temperature', 'time': 19.0}
+variable = {'name': 'temperature', 'time': 19.0}
 
 # get x, y data from results
 x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], variable)
