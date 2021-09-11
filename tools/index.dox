@@ -10,6 +10,8 @@ Introduction to %PlatoAnalyze.
 
 <ul>
 <li> \ref PA_Verification_BodyLoads </li>
+<li> \ref PA_Verification_TransientDynamicsImp </li>
+<li> \ref PA_Verification_TransientDynamicsAForm </li>
 <li> \ref PA_Verification_LinearThermal </li>
 <li> \ref PA_Verification_NonlinearThermal </li>
 <li> \ref PA_Verification_Thermomechanics_StaticNonlinearBar </li>

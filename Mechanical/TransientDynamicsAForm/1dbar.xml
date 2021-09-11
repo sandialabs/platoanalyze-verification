@@ -1,0 +1,80 @@
+<ParameterList name="Problem">
+  <Parameter name="Physics" type="string" value="Plato Driver"/>
+  <Parameter  name="Spatial Dimension"    type="int"    value="3"/>
+
+  <Parameter name="Input Mesh" type="string" value="1dbar.exo"/>
+
+  <ParameterList name="Plato Problem">
+    <Parameter name="Physics"            type="string"  value="Mechanical"/>
+    <Parameter name="PDE Constraint"     type="string"  value="Hyperbolic"/>
+
+    <ParameterList name="Time Integration">
+      <Parameter name="Number Time Steps" type="int" value="10"/>
+      <Parameter name="A-Form" type="bool" value="true"/>
+      <Parameter name="Time Step" type="double" value="1.0e-7"/>
+      <Parameter name="Newmark Gamma" type="double" value="0.5"/>
+      <Parameter name="Newmark Beta" type="double" value="0.25"/>    
+    </ParameterList>
+
+    <ParameterList name="Hyperbolic">
+      <Parameter  name="Plottable"   type="Array(string)" value="{stress}"/>
+      <ParameterList name="Penalty Function">
+        <Parameter name="Type" type="string" value="SIMP"/>
+        <Parameter name="Exponent" type="double" value="1.0"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Spatial Model">
+      <ParameterList name="Domains">
+        <ParameterList name="Design Volume">
+          <Parameter name="Element Block" type="string" value="block_1"/>
+          <Parameter name="Material Model" type="string" value="Aluminum"/>
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Material Models">
+      <ParameterList name="Aluminum">
+        <ParameterList name="Isotropic Linear Elastic"> <!-- aluminum -->
+          <Parameter  name="Mass Density" type="double" value="2.7"/> <!-- g/cm3 -->
+          <Parameter  name="Poissons Ratio" type="double" value="0.0"/>
+          <Parameter  name="Youngs Modulus" type="double" value="68.0e10"/> <!-- dyne/cm2 -->
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+ 
+    <ParameterList  name="Computed Fields">
+      <ParameterList  name="Initial X Displacement">
+        <Parameter  name="Function" type="string" value="0.001*sin(3.14159264*x)"/>
+      </ParameterList>
+      <ParameterList  name="Initial X Velocity">
+        <Parameter  name="Function" type="string" value="-1576.6033502*cos(3.14159264*x)"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList name="Initial State">
+      <ParameterList name="Displacement X">
+        <Parameter  name="Computed Field" type="string" value="Initial X Displacement"/>
+      </ParameterList>
+      <ParameterList name="Velocity X">
+        <Parameter  name="Computed Field" type="string" value="Initial X Velocity"/>
+      </ParameterList>
+    </ParameterList>
+
+    <ParameterList  name="Displacement Boundary Conditions">
+      <ParameterList  name="X0 Boundary Condition">
+        <Parameter  name="Type"     type="string" value="Time Dependent"/>
+        <Parameter  name="Index"    type="int"    value="0"/>
+        <Parameter  name="Sides"    type="string" value="x0"/>
+        <Parameter  name="Function" type="string" value="0.001*sin(3.14159264*(-0.5-501840.435*t))"/>
+      </ParameterList>
+      <ParameterList  name="X1 Boundary Condition">
+        <Parameter  name="Type"     type="string" value="Time Dependent"/>
+        <Parameter  name="Index"    type="int"    value="0"/>
+        <Parameter  name="Sides"    type="string" value="x1"/>
+	<Parameter  name="Function" type="string" value="0.001*sin(3.14159264*(0.5-501840.435*t))"/>
+      </ParameterList>
+    </ParameterList>
+  </ParameterList>
+
+</ParameterList>	
