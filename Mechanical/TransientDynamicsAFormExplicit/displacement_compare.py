@@ -2,7 +2,7 @@ import line
 import math
 
 def displacement(x):
-  t = 1.9e-7
+  t = 2.0e-7
   return 0.001*math.sin(3.14159264*(x-501840.435*t))
 
 
@@ -11,7 +11,7 @@ def displacement(x):
 tolerance = 1e-3
 print "#L2_error_norm_tolerance:", tolerance
 
-variable = {'type': 'vector', 'dim': 3, 'name': 'displacement', 'time': 19.0}
+variable = {'type': 'vector', 'dim': 3, 'name': 'displacement', 'time': 27.0}
 
 # get x, y data from results
 x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], variable)

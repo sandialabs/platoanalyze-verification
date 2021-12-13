@@ -9,11 +9,10 @@
     <Parameter name="PDE Constraint"     type="string"  value="Hyperbolic"/>
 
     <ParameterList name="Time Integration">
-      <Parameter name="Number Time Steps" type="int" value="20"/>
+      <Parameter name="Termination Time" type="double" value="2.0e-7"/>
       <Parameter name="A-Form" type="bool" value="true"/>
-      <Parameter name="Time Step" type="double" value="1.0e-8"/>
       <Parameter name="Newmark Gamma" type="double" value="0.5"/>
-      <Parameter name="Newmark Beta" type="double" value="0.25"/>    
+      <Parameter name="Newmark Beta" type="double" value="0.0"/>    
     </ParameterList>
 
     <ParameterList name="Hyperbolic">

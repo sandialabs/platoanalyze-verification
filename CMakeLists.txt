@@ -6,6 +6,7 @@ set(ImageDirs) ## this variable accumulates a list of directories that may have 
 ADD_SUBDIRECTORY(Mechanical/BodyLoads)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsImp)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAForm)
+ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAFormExplicit)
 ADD_SUBDIRECTORY(Thermal/LinearThermal)
 ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
 ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
