@@ -13,6 +13,7 @@
       <Parameter name="A-Form" type="bool" value="true"/>
       <Parameter name="Newmark Gamma" type="double" value="0.5"/>
       <Parameter name="Newmark Beta" type="double" value="0.0"/>    
+      <Parameter name="Number Output Steps" type="int" value="1"/>    
     </ParameterList>
 
     <ParameterList name="Hyperbolic">
