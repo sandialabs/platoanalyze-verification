@@ -52,10 +52,10 @@
     </ParameterList>
 
     <ParameterList name="Initial State">
-      <ParameterList name="Displacement X">
+      <ParameterList name="displacement X">
         <Parameter  name="Computed Field" type="string" value="Initial X Displacement"/>
       </ParameterList>
-      <ParameterList name="Velocity X">
+      <ParameterList name="velocity X">
         <Parameter  name="Computed Field" type="string" value="Initial X Velocity"/>
       </ParameterList>
     </ParameterList>

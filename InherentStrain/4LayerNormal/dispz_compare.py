@@ -10,10 +10,10 @@ l = 0.25  ## layer thickness
 e = 0.01  ## inherent strain
 
 
-variable = {'type': 'vector', 'dim': 3, 'component': 2, 'name': 'total displacement', 'time': 3.0}
+variable = {'type': 'vector', 'dim': 3, 'component': 2, 'name': 'total displacement ', 'time': 3.0}
 
 # get x, y data from results
-z_data, disp_data = line.getLineData('./output_data/steps.pvd', [0, 0, -0.25], [0, 0, 0.75], variable)
+z_data, disp_data = line.getLineData('./output_data.exo', [0, 0, -0.25], [0, 0, 0.75], variable)
 
 
 # sample analytical solution

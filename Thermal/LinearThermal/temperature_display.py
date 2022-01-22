@@ -3,29 +3,37 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
-# create a new 'PVD Reader'
-stepspvd = PVDReader(FileName='./output_data/steps.pvd')
+# create a new 'ExodusIIReader'
+outputexo = ExodusIIReader(FileName=['./output_data.exo'])
+outputexo.PointVariables = []
+outputexo.SideSetArrayStatus = []
+outputexo.NodeMapArrayStatus = ['Unnamed map ID: -1']
+outputexo.ElementMapArrayStatus = ['Unnamed map ID: -1']
+
+# Properties modified on outputexo
+outputexo.PointVariables = ['temperature']
+outputexo.ElementBlocks = ['Unnamed block ID: 1 Type: TET4']
 
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
 # uncomment following to set a specific view size
-renderView1.ViewSize = [1225, 800]
+# renderView1.ViewSize = [1082, 812]
 
 # show data in view
-stepspvdDisplay = Show(stepspvd, renderView1)
+outputexoDisplay = Show(outputexo, renderView1)
 # trace defaults for the display properties.
-stepspvdDisplay.Representation = 'Surface'
-stepspvdDisplay.ColorArrayName = [None, '']
-stepspvdDisplay.OSPRayScaleArray = 'Temperature'
-stepspvdDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
-stepspvdDisplay.SelectOrientationVectors = 'None'
-stepspvdDisplay.ScaleFactor = 0.2
-stepspvdDisplay.SelectScaleArray = 'None'
-stepspvdDisplay.GlyphType = 'Arrow'
-stepspvdDisplay.GlyphTableIndexArray = 'None'
-stepspvdDisplay.DataAxesGrid = 'GridAxesRepresentation'
-stepspvdDisplay.PolarAxes = 'PolarAxesRepresentation'
-stepspvdDisplay.ScalarOpacityUnitDistance = 0.04661854730260802
+outputexoDisplay.Representation = 'Surface'
+outputexoDisplay.ColorArrayName = [None, '']
+outputexoDisplay.OSPRayScaleArray = 'GlobalNodeId'
+outputexoDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
+outputexoDisplay.SelectOrientationVectors = 'GlobalNodeId'
+outputexoDisplay.ScaleFactor = 0.2
+outputexoDisplay.SelectScaleArray = 'GlobalNodeId'
+outputexoDisplay.GlyphType = 'Arrow'
+outputexoDisplay.GlyphTableIndexArray = 'GlobalNodeId'
+outputexoDisplay.DataAxesGrid = 'GridAxesRepresentation'
+outputexoDisplay.PolarAxes = 'PolarAxesRepresentation'
+outputexoDisplay.ScalarOpacityUnitDistance = 0.04661854730260802
 
 # reset view to fit data
 renderView1.ResetCamera()
@@ -34,33 +42,42 @@ renderView1.ResetCamera()
 renderView1.Update()
 
 # set scalar coloring
-ColorBy(stepspvdDisplay, ('POINTS', 'Temperature'))
-
-# rescale color and/or opacity maps used to include current data range
-stepspvdDisplay.RescaleTransferFunctionToDataRange(True, False)
+ColorBy(outputexoDisplay, ('FIELD', 'vtkBlockColors'))
 
 # show color bar/color legend
-stepspvdDisplay.SetScalarBarVisibility(renderView1, True)
+outputexoDisplay.SetScalarBarVisibility(renderView1, True)
 
-# get color transfer function/color map for 'Temperature'
-temperatureLUT = GetColorTransferFunction('Temperature')
+# get color transfer function/color map for 'vtkBlockColors'
+vtkBlockColorsLUT = GetColorTransferFunction('vtkBlockColors')
 
-# change representation type
-stepspvdDisplay.SetRepresentationType('Surface With Edges')
+# set scalar coloring
+ColorBy(outputexoDisplay, ('POINTS', 'temperature'))
 
-# Rescale transfer function
-temperatureLUT.RescaleTransferFunction(0.0, 0.002)
+# Hide the scalar bar for this color map if no visible data is colored by it.
+HideScalarBarIfNotNeeded(vtkBlockColorsLUT, renderView1)
 
-# get opacity transfer function/opacity map for 'Temperature'
-temperaturePWF = GetOpacityTransferFunction('Temperature')
+# rescale color and/or opacity maps used to include current data range
+outputexoDisplay.RescaleTransferFunctionToDataRange(True, False)
 
-# Rescale transfer function
-temperaturePWF.RescaleTransferFunction(0.0, 0.002)
+# show color bar/color legend
+outputexoDisplay.SetScalarBarVisibility(renderView1, True)
+
+# get color transfer function/color map for 'temperature'
+temperatureLUT = GetColorTransferFunction('temperature')
+
+# get color legend/bar for temperatureLUT in view renderView1
+temperatureLUTColorBar = GetScalarBar(temperatureLUT, renderView1)
+
+# change scalar bar placement
+temperatureLUTColorBar.Orientation = 'Horizontal'
+temperatureLUTColorBar.WindowLocation = 'AnyLocation'
+temperatureLUTColorBar.Position = [0.3636229205175603, 0.07999999999999978]
+temperatureLUTColorBar.ScalarBarLength = 0.32999999999999985
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [1.7438733200602154, 1.1546006004002538, 2.4716222099918332]
-renderView1.CameraFocalPoint = [0.09698992820004326, -0.16428522011225666, 0.023257295123646403]
-renderView1.CameraViewUp = [-0.19924057811635842, 0.9124190832933381, -0.3574837177746757]
+renderView1.CameraPosition = [1.5711343326076652, -3.5934340179274016, 1.8480350505821843]
+renderView1.CameraFocalPoint = [-0.12389660748218705, 0.17029516369075967, -0.4657319223403389]
+renderView1.CameraViewUp = [-0.2214910389706495, 0.4363652169892743, 0.8720820586720069]
 renderView1.CameraParallelScale = 1.224744871391589
 
 # save screenshot
@@ -69,9 +86,9 @@ SaveScreenshot('LinearThermal_solution.png', renderView1, ImageResolution=[1225,
 #### saving camera placements for all active views
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [1.7438733200602154, 1.1546006004002538, 2.4716222099918332]
-renderView1.CameraFocalPoint = [0.09698992820004326, -0.16428522011225666, 0.023257295123646403]
-renderView1.CameraViewUp = [-0.19924057811635842, 0.9124190832933381, -0.3574837177746757]
+renderView1.CameraPosition = [1.5711343326076652, -3.5934340179274016, 1.8480350505821843]
+renderView1.CameraFocalPoint = [-0.12389660748218705, 0.17029516369075967, -0.4657319223403389]
+renderView1.CameraViewUp = [-0.2214910389706495, 0.4363652169892743, 0.8720820586720069]
 renderView1.CameraParallelScale = 1.224744871391589
 
 #### uncomment the following to render all views

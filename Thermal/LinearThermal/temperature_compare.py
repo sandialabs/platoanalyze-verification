@@ -15,7 +15,7 @@ T = 0.0    ## fixed temperature BC
 variable = {'name': 'temperature'}
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data/steps.pvd', [-1, 0, 0], [1, 0, 0], variable)
+x_data, y_data = line.getLineData('./output_data.exo', [-1, 0, 0], [1, 0, 0], variable)
 
 
 # sample analytical solution
