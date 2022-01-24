@@ -2,7 +2,7 @@ import line
 import math
 
 def displacement(x):
-  t = 1.0e-7
+  t = 1.9e-7
   return 0.001*math.sin(3.14159264*(x-501840.435*t))
 
 

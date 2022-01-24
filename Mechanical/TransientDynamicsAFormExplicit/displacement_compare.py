@@ -11,10 +11,10 @@ def displacement(x):
 tolerance = 1e-3
 print "#L2_error_norm_tolerance:", tolerance
 
-variable = {'type': 'vector', 'dim': 3, 'name': 'displacement', 'time': 27.0}
+variable = {'type': 'vector', 'dim': 3, 'name': 'displacement ', 'time': 27.0}
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data/steps.pvd', [-0.5, 0, 0], [0.5, 0, 0], variable)
+x_data, y_data = line.getLineData('./output_data.exo', [-0.5, 0, 0], [0.5, 0, 0], variable)
 
 
 # sample analytical displacement solution
