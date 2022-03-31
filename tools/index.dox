@@ -9,7 +9,7 @@ Introduction to %PlatoAnalyze.
 \section PA_Verification Verification Problems
 
 <ul>
-<li> \ref PA_Verification_BodyLoads </li>
+<li> \ref PA_Verification_BodyLoads_Tet4 </li>
 <li> \ref PA_Verification_TransientDynamicsImp </li>
 <li> \ref PA_Verification_TransientDynamicsAForm </li>
 <li> \ref PA_Verification_LinearThermal </li>

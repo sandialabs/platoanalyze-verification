@@ -3,7 +3,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/index.dox ${CMAKE_CURRENT_BINAR
 
 set(ImageDirs) ## this variable accumulates a list of directories that may have images for doxygen.
 
-ADD_SUBDIRECTORY(Mechanical/BodyLoads)
+ADD_SUBDIRECTORY(Mechanical/BodyLoads_Tet4)
+ADD_SUBDIRECTORY(Mechanical/BodyLoads_Tet10)
+ADD_SUBDIRECTORY(Mechanical/BodyLoads_Hex8)
+ADD_SUBDIRECTORY(Mechanical/BodyLoads_Hex27)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsImp)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAForm)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAFormExplicit)
