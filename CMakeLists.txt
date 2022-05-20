@@ -15,6 +15,9 @@ ADD_SUBDIRECTORY(MPCs/TensileBar)
 ADD_SUBDIRECTORY(InherentStrain/2LayerNormal)
 ADD_SUBDIRECTORY(InherentStrain/4LayerNormal)
 ADD_SUBDIRECTORY(InherentStrain/2LayerShear)
+IF( PLATOANALYZE_ENABLE_PYTHON )
+  ADD_SUBDIRECTORY(Mechanical/MassProperties)
+ENDIF()
 
 # modify the list of ImageDirs to be space delimited instead of semicolon delimited.
 string(REPLACE ";" " " ImageDirs "${ImageDirs}")
