@@ -1,0 +1,15 @@
+reset 
+create cylinder height 5 radius 1.5
+# vol 1 move x 2 y 5 z 3
+ volume all scheme tetmesh
+ volume all size 0.1
+ mesh volume all
+ sideset 1 surface 2
+ sideset 1 name "z0"
+ sideset 2 surface 3
+ sideset 2 name "z1"
+ block 1 volume all
+ block 1 name "block_1"
+ export mesh "cylinder.exo" overwrite
+ # export mesh "cylinder_shifted.exo" overwrite
+
