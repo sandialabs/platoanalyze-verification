@@ -3,8 +3,13 @@ from paraview.simple import *
 #### disable automatic camera reset on 'Show'
 paraview.simple._DisableFirstRenderCameraReset()
 
-# create a new 'PVD Reader'
-stepspvd = PVDReader(FileName='./output_data/steps.pvd')
+# create a new 'ExodusIIReader'
+outputexo = ExodusIIReader(FileName=['./output_data.exo'])
+outputexo.ElementVariables = []
+outputexo.PointVariables = []
+outputexo.SideSetArrayStatus = []
+outputexo.NodeMapArrayStatus = ['Unnamed map ID: -1']
+outputexo.ElementMapArrayStatus = ['Unnamed map ID: -1']
 
 # get animation scene
 animationScene1 = GetAnimationScene()
@@ -12,25 +17,31 @@ animationScene1 = GetAnimationScene()
 # update animation scene based on data timesteps
 animationScene1.UpdateAnimationUsingDataTimeSteps()
 
+# Properties modified on outputexo
+outputexo.PointVariables = ['displacement ']
+outputexo.ApplyDisplacements = 0
+outputexo.ElementBlocks = ['Unnamed block ID: 1 Type: TET4']
+
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
-renderView1.ViewSize = [1195, 536]
+# uncomment following to set a specific view size
+# renderView1.ViewSize = [1082, 812]
 
 # show data in view
-stepspvdDisplay = Show(stepspvd, renderView1)
+outputexoDisplay = Show(outputexo, renderView1)
 # trace defaults for the display properties.
-stepspvdDisplay.Representation = 'Surface'
-stepspvdDisplay.ColorArrayName = [None, '']
-stepspvdDisplay.OSPRayScaleArray = 'displacement'
-stepspvdDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
-stepspvdDisplay.SelectOrientationVectors = 'displacement'
-stepspvdDisplay.ScaleFactor = 0.1
-stepspvdDisplay.SelectScaleArray = 'displacement'
-stepspvdDisplay.GlyphType = 'Arrow'
-stepspvdDisplay.GlyphTableIndexArray = 'displacement'
-stepspvdDisplay.DataAxesGrid = 'GridAxesRepresentation'
-stepspvdDisplay.PolarAxes = 'PolarAxesRepresentation'
-stepspvdDisplay.ScalarOpacityUnitDistance = 0.018499393455522487
+outputexoDisplay.Representation = 'Surface'
+outputexoDisplay.ColorArrayName = [None, '']
+outputexoDisplay.OSPRayScaleArray = 'GlobalNodeId'
+outputexoDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
+outputexoDisplay.SelectOrientationVectors = 'GlobalNodeId'
+outputexoDisplay.ScaleFactor = 0.1
+outputexoDisplay.SelectScaleArray = 'GlobalNodeId'
+outputexoDisplay.GlyphType = 'Arrow'
+outputexoDisplay.GlyphTableIndexArray = 'GlobalNodeId'
+outputexoDisplay.DataAxesGrid = 'GridAxesRepresentation'
+outputexoDisplay.PolarAxes = 'PolarAxesRepresentation'
+outputexoDisplay.ScalarOpacityUnitDistance = 0.04663617096799642
 
 # reset view to fit data
 renderView1.ResetCamera()
@@ -38,16 +49,26 @@ renderView1.ResetCamera()
 # update the view to ensure updated data information
 renderView1.Update()
 
-animationScene1.GoToLast()
-
 # set scalar coloring
-ColorBy(stepspvdDisplay, ('POINTS', 'displacement', 'Magnitude'))
-
-# rescale color and/or opacity maps used to include current data range
-stepspvdDisplay.RescaleTransferFunctionToDataRange(True, False)
+ColorBy(outputexoDisplay, ('FIELD', 'vtkBlockColors'))
 
 # show color bar/color legend
-stepspvdDisplay.SetScalarBarVisibility(renderView1, True)
+outputexoDisplay.SetScalarBarVisibility(renderView1, True)
+
+# get color transfer function/color map for 'vtkBlockColors'
+vtkBlockColorsLUT = GetColorTransferFunction('vtkBlockColors')
+
+# set scalar coloring
+ColorBy(outputexoDisplay, ('POINTS', 'displacement ', 'Magnitude'))
+
+# Hide the scalar bar for this color map if no visible data is colored by it.
+HideScalarBarIfNotNeeded(vtkBlockColorsLUT, renderView1)
+
+# rescale color and/or opacity maps used to include current data range
+outputexoDisplay.RescaleTransferFunctionToDataRange(True, False)
+
+# show color bar/color legend
+outputexoDisplay.SetScalarBarVisibility(renderView1, True)
 
 # get color transfer function/color map for 'displacement'
 displacementLUT = GetColorTransferFunction('displacement')
@@ -58,42 +79,14 @@ displacementLUTColorBar = GetScalarBar(displacementLUT, renderView1)
 # change scalar bar placement
 displacementLUTColorBar.Orientation = 'Horizontal'
 displacementLUTColorBar.WindowLocation = 'AnyLocation'
-displacementLUTColorBar.Position = [0.317489539748954, 0.07253731343283587]
-displacementLUTColorBar.ScalarBarLength = 0.32999999999999996
-
-# Rescale transfer function
-displacementLUT.RescaleTransferFunction(0.0, 0.0008)
-
-# get opacity transfer function/opacity map for 'displacement'
-displacementPWF = GetOpacityTransferFunction('displacement')
-
-# Rescale transfer function
-displacementPWF.RescaleTransferFunction(0.0, 0.0008)
-
-# change scalar bar placement
-displacementLUTColorBar.Position = [0.221255230125523, 0.07253731343283587]
-displacementLUTColorBar.ScalarBarLength = 0.42623430962343095
-
-# set scalar coloring
-ColorBy(stepspvdDisplay, ('POINTS', 'displacement', 'X'))
-
-# rescale color and/or opacity maps used to exactly fit the current data range
-stepspvdDisplay.RescaleTransferFunctionToDataRange(False, False)
-
-# Update a scalar bar component title.
-UpdateScalarBarsComponentTitle(displacementLUT, stepspvdDisplay)
-
-# Rescale transfer function
-displacementLUT.RescaleTransferFunction(0.0, 0.0008)
-
-# Rescale transfer function
-displacementPWF.RescaleTransferFunction(0.0, 0.0008)
+displacementLUTColorBar.Position = [0.321109057301294, 0.185911330049261]
+displacementLUTColorBar.ScalarBarLength = 0.32999999999999985
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [0.5206207306783589, 0.2585165430084527, 0.5443285229328163]
-renderView1.CameraFocalPoint = [-0.46478766622574985, -0.5091155866919678, -0.9356789994700894]
-renderView1.CameraViewUp = [-0.25945010831600723, 0.9170300598662305, -0.3028886108729578]
-renderView1.CameraParallelScale = 0.5012484413940855
+renderView1.CameraPosition = [0.679129873481059, 0.7552201501109075, 1.2575896221274485]
+renderView1.CameraFocalPoint = [-0.06638976115682486, -0.1790778575231979, -0.2662209860070228]
+renderView1.CameraViewUp = [-0.191960112863926, 0.8757209043460047, -0.4430171698260514]
+renderView1.CameraParallelScale = 0.5012484414312457
 
 # save screenshot
 SaveScreenshot('TransientDynamicsAForm_solution.png', renderView1, ImageResolution=[1195, 536])
@@ -101,10 +94,10 @@ SaveScreenshot('TransientDynamicsAForm_solution.png', renderView1, ImageResoluti
 #### saving camera placements for all active views
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [0.5206207306783589, 0.2585165430084527, 0.5443285229328163]
-renderView1.CameraFocalPoint = [-0.46478766622574985, -0.5091155866919678, -0.9356789994700894]
-renderView1.CameraViewUp = [-0.25945010831600723, 0.9170300598662305, -0.3028886108729578]
-renderView1.CameraParallelScale = 0.5012484413940855
+renderView1.CameraPosition = [0.679129873481059, 0.7552201501109075, 1.2575896221274485]
+renderView1.CameraFocalPoint = [-0.06638976115682486, -0.1790778575231979, -0.2662209860070228]
+renderView1.CameraViewUp = [-0.191960112863926, 0.8757209043460047, -0.4430171698260514]
+renderView1.CameraParallelScale = 0.5012484414312457
 
 #### uncomment the following to render all views
 # RenderAllViews()

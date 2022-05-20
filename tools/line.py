@@ -10,10 +10,15 @@ def getLineData(fileName, x0, x1, variable):
   variableComp = variable.get('component', 0)
 
   # create a new 'PVD Reader'
-  stepspvd = PVDReader(FileName=fileName)
+  stepsexo = ExodusIIReader(FileName=[fileName])
+
+  stepsexo.ElementVariables = []
+  stepsexo.PointVariables = [variableName]
+  stepsexo.ApplyDisplacements = 0
+
 
   # create a new 'Plot Over Line'
-  plotOverLine1 = PlotOverLine(Input=stepspvd, Source='High Resolution Line Source')
+  plotOverLine1 = PlotOverLine(Input=stepsexo, Source='High Resolution Line Source')
 
   # Properties modified on plotOverLine1
   plotOverLine1.Tolerance = 2.22044604925031e-16

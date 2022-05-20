@@ -12,10 +12,10 @@ g = 9.81   ## Acceleration due to gravity (m/s2)
 p = 2700.0 ## mass density (kg/m3)
 
 
-variable = {'type': 'vector', 'dim': 3, 'name': 'displacement'}
+variable = {'type': 'vector', 'dim': 3, 'name': 'displacement '}
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data/steps.pvd', [-2.5, 0, 0], [2.5, 0, 0], variable)
+x_data, y_data = line.getLineData('./output_data.exo', [-2.5, 0, 0], [2.5, 0, 0], variable)
 
 
 # sample analytical solution
