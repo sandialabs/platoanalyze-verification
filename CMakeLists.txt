@@ -3,21 +3,32 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/index.dox ${CMAKE_CURRENT_BINAR
 
 set(ImageDirs) ## this variable accumulates a list of directories that may have images for doxygen.
 
+if(ELLIPTIC)
 ADD_SUBDIRECTORY(Mechanical/BodyLoads_Tet4)
 ADD_SUBDIRECTORY(Mechanical/BodyLoads_Tet10)
 ADD_SUBDIRECTORY(Mechanical/BodyLoads_Hex8)
 ADD_SUBDIRECTORY(Mechanical/BodyLoads_Hex27)
+ADD_SUBDIRECTORY(MPCs/TensileBar)
+ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
+ADD_SUBDIRECTORY(Thermal/LinearThermal)
+ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
+endif()
+
+if(HYPERBOLIC)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsImp)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAForm)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAFormExplicit)
-ADD_SUBDIRECTORY(Thermal/LinearThermal)
-ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
-ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
+endif()
+
+if(PARABOLIC)
 ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
-ADD_SUBDIRECTORY(MPCs/TensileBar)
+endif()
+
+if(HATCHING)
 ADD_SUBDIRECTORY(InherentStrain/2LayerNormal)
 ADD_SUBDIRECTORY(InherentStrain/4LayerNormal)
 ADD_SUBDIRECTORY(InherentStrain/2LayerShear)
+endif()
 
 # modify the list of ImageDirs to be space delimited instead of semicolon delimited.
 string(REPLACE ";" " " ImageDirs "${ImageDirs}")
