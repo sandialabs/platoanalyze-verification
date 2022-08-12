@@ -1,16 +1,14 @@
 import line
+import verification_utils
 import math
 
 # OBLIGATORY:  the test harness looks for '#L2_error_norm_tolerance' 
-tolerance = 1e-8
-print "#L2_error_norm_tolerance:", tolerance
-
+verification_utils.printErrorTolerance(tol=1e-8)
 
 l = 2.0    ## length
 k = 1.0e3  ## thermal conductivity
 q = 1.0    ## flux boundary condition
 T = 0.0    ## fixed temperature BC
-
 
 variable = {'name': 'temperature'}
 
@@ -22,14 +20,5 @@ x_data, y_data = line.getLineData('./output_data.exo', [-1, 0, 0], [1, 0, 0], va
 a_data = [T - q/k*(l - x_data[i]) for i in range(len(x_data))]
 
 # compute error norm
-error_norm = 0.0
-for i in range(len(x_data)):
-  error_norm += (y_data[i]-a_data[i])*(y_data[i]-a_data[i])
-
-# OBLIGATORY:  the test harness looks for '#L2_error_norm_value' 
-error_norm = math.sqrt(error_norm)
-print "#L2_error_norm_value: ", error_norm
-
-print "#X, computed, analytical"
-for i in range(len(x_data)):
-  print x_data[i], y_data[i], a_data[i]
+verification_utils.computeAndPrintErrorNorm(y_data, a_data)
+verification_utils.printLineSolution(x_data, y_data, a_data)
