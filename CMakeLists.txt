@@ -3,6 +3,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/index.dox ${CMAKE_CURRENT_BINAR
 
 set(ImageDirs) ## this variable accumulates a list of directories that may have images for doxygen.
 
+INCLUDE(AddVerificationTest.cmake) # Helper macro for tests
 ADD_SUBDIRECTORY(Mechanical/BodyLoads)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsImp)
 ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAForm)
