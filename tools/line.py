@@ -18,7 +18,7 @@ def getLineData(fileName, x0, x1, variable):
 
 
   # create a new 'Plot Over Line'
-  plotOverLine1 = PlotOverLine(Input=stepsexo, Source='High Resolution Line Source')
+  plotOverLine1 = PlotOverLine(Input=stepsexo, Source='Line')
 
   # Properties modified on plotOverLine1
   plotOverLine1.Tolerance = 2.22044604925031e-16
@@ -40,7 +40,7 @@ def getLineData(fileName, x0, x1, variable):
   if variableType == 'scalar':
     y_Data = [fieldData.GetValue(i) for i in range(fieldData.GetSize())]
   elif variableType == 'vector':
-    numEntries = fieldData.GetSize()/variableDim
+    numEntries = int(fieldData.GetSize()/variableDim)
     y_Data = [fieldData.GetValue(i*variableDim+variableComp) for i in range(numEntries)]
 
   return x_Data, y_Data
