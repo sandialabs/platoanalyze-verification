@@ -29,11 +29,11 @@
         "solver": "PBICGSTAB", 
         "print_solve_stats": 0, 
         "obtain_timings": 1, 
-        "max_iters": 1000, 
+        "max_iters": 20000, 
         "monitor_residual": 1, 
         "convergence": "ABSOLUTE", 
         "scope": "main", 
-        "tolerance": 1.0e-12, 
+        "tolerance": 5.0e-4, 
         "norm": "L2"
     }
 }
