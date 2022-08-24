@@ -1,9 +1,9 @@
 import line
+import verification_utils
 import math
 
 # OBLIGATORY:  the test harness looks for '#L2_error_norm_tolerance' 
-tolerance = 1e-2
-print "#L2_error_norm_tolerance:", tolerance
+verification_utils.printErrorTolerance(tol=1e-2)
 
 
 l = 0.25  ## layer thickness
@@ -30,14 +30,5 @@ for i in range(len(z_data)):
     a_data[i] = (1.0-l)*e*z - 3.0*e*l
 
 # compute error norm
-error_norm = 0.0
-for i in range(len(z_data)):
-  error_norm += (disp_data[i]-a_data[i])*(disp_data[i]-a_data[i])
-
-# OBLIGATORY:  the test harness looks for '#L2_error_norm_value' 
-error_norm = math.sqrt(error_norm)
-print "#L2_error_norm_value: ", error_norm
-
-print "#X, computed, analytical"
-for i in range(len(z_data)):
-  print z_data[i], disp_data[i], a_data[i]
+verification_utils.computeAndPrintErrorNorm(disp_data, a_data)
+verification_utils.printLineSolution(z_data, disp_data, a_data)
