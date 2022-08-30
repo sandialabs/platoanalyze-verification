@@ -73,7 +73,7 @@ renderView1.CameraViewUp = [-0.23015077254034955, 0.9076887147121063, -0.3509014
 renderView1.CameraParallelScale = 2.598076211353316
 
 # save screenshot
-SaveScreenshot('./BodyLoads_solution.png', renderView1, ImageResolution=[1324, 802])
+SaveScreenshot('./BodyLoads_Tet4_solution.png', renderView1, ImageResolution=[1324, 802])
 
 #### saving camera placements for all active views
 
