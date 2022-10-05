@@ -25,7 +25,7 @@ ADD_SUBDIRECTORY(Mechanical/TransientDynamicsAFormExplicit)
 endif()
 
 if(PARABOLIC)
-#ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
+ADD_SUBDIRECTORY(Thermomechanics/NonlinearBar)
 endif()
 
 if(HATCHING)
