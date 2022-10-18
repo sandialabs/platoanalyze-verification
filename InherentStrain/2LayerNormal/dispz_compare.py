@@ -1,4 +1,3 @@
-import line
 import verification_utils
 import math
 
@@ -10,10 +9,10 @@ l = 0.125  ## layer thickness
 e = -0.01  ## inherent strain
 
 
-variable = {'type': 'vector', 'dim': 3, 'component': 2, 'name': 'total displacement ', 'time': 1.0}
+variable = {'name': 'total displacement Z', 'time': 1.0}
 
 # get x, y data from results
-z_data, disp_data = line.getLineData('./output_data.exo', [0, 0, -0.125], [0, 0, 0.125], variable)
+z_data, disp_data = verification_utils.getLineData('./output_data.exo', variable, 'plot')
 
 # sample analytical solution
 uc = -l*l/(2.0*l)*e

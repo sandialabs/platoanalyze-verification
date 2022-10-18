@@ -75,7 +75,7 @@
       <ParameterList  name="Traction Vector Boundary Condition">
         <Parameter  name="Type"     type="string"        value="Uniform"/>
         <Parameter  name="Values"   type="Array(double)" value="{4.0e3, 0.0, 0.0}"/>
-        <Parameter  name="Sides"    type="string"        value="ss_xl"/>
+        <Parameter  name="Sides"    type="string"        value="ss_x1"/>
       </ParameterList>
     </ParameterList>
 

@@ -5,13 +5,20 @@
 ## Running 06/20/2020 10:29:51 PM
 ## Command Options:
 create brick x 5 y 1 z 1
+webcut volume all with plane yplane
+webcut volume all with plane zplane
+imprint all
+merge all
 body all size 0.2
 mesh volume all
-sideset 1 surface 4
+sideset 1 surface 35 23 21 29
 sideset 1 name "x0"
-sideset 2 surface 6
+sideset 2 surface 31 33 19 26 
 sideset 2 name "x1"
+nodeset 1 curve 29
+nodeset 1 name "plot"
 block 1 volume all
 block 1 name "block_1"
 block 1 element type hex8
 export mesh "block.exo" overwrite
+quit

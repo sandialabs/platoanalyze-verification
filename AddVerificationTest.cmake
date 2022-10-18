@@ -22,7 +22,6 @@ macro(add_verification_test CONFIG_FILE OUTPUT_DATA COMPARE_VAR_NAMES ADDITIONAL
     endforeach(test_file)
 
     # copy some verification test utility files
-    configure_file(${CMAKE_SOURCE_DIR}/tests/verification/tools/line.py ${CMAKE_CURRENT_BINARY_DIR}/line.py COPYONLY)
     configure_file(${CMAKE_SOURCE_DIR}/tests/verification/tools/verification_utils.py ${CMAKE_CURRENT_BINARY_DIR}/verification_utils.py COPYONLY)
 
     if(NOT PLATOANALYZE_ENABLE_ENGINEMESH)

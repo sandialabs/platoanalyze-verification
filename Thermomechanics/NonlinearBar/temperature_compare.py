@@ -1,4 +1,3 @@
-import line
 import verification_utils
 import math
 
@@ -34,7 +33,7 @@ T = 0.0    ## fixed temperature BC
 variable = {'name': 'temperature', 'time': 19.0}
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data.exo', [-0.5, 0, 0], [0.5, 0, 0], variable)
+x_data, y_data = verification_utils.getLineData('./output_data.exo', variable, 'plot')
 
 # sample analytical solution
 a_data = [sol(x_data[i]) for i in range(len(x_data))]

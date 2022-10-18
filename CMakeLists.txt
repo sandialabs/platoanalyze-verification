@@ -5,6 +5,11 @@ set(ImageDirs) ## this variable accumulates a list of directories that may have 
 
 INCLUDE(AddVerificationTest.cmake) # Helper macro for tests
 
+# these need to be here because the behavior of the 'verify' macro
+# depends on the PARAVIEW and GNUPLOT variables
+FIND_PROGRAM( PARAVIEW NAMES paraview )
+FIND_PROGRAM( GNUPLOT  NAMES gnuplot  )
+
 if(ELLIPTIC)
 ADD_SUBDIRECTORY(Mechanical/BodyLoads_Tet4)
 ADD_SUBDIRECTORY(Mechanical/BodyLoads_Tet10)
@@ -39,19 +44,21 @@ IF( PLATOANALYZE_ENABLE_PYTHON )
 ENDIF()
 
 
-# modify the list of ImageDirs to be space delimited instead of semicolon delimited.
-string(REPLACE ";" " " ImageDirs "${ImageDirs}")
+FIND_PROGRAM( DOXYGEN  NAMES doxygen  )
+if( DOXYGEN AND PARAVIEW AND GNUPLOT)
+  # modify the list of ImageDirs to be space delimited instead of semicolon delimited.
+  string(REPLACE ";" " " ImageDirs "${ImageDirs}")
 
-# copy/modify verification.doxyfile to have a IMAGE_DIRS point to the list of test directories
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/verification.doxyfile ${CMAKE_CURRENT_BINARY_DIR})
+  # copy/modify verification.doxyfile to have a IMAGE_DIRS point to the list of test directories
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/verification.doxyfile ${CMAKE_CURRENT_BINARY_DIR})
 
-if( DOXYGEN )
-ADD_CUSTOM_TARGET(VerificationDoc
-  COMMAND ${CMAKE_COMMAND}
-  -DDOXY_FILE=${CMAKE_CURRENT_BINARY_DIR}/verification.doxyfile
-  -P ${CMAKE_SOURCE_DIR}/tests/verification/tools/doc.cmake
-  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} )
+  ADD_CUSTOM_TARGET(VerificationDoc
+    COMMAND ${CMAKE_COMMAND}
+    -DDOXY_FILE=${CMAKE_CURRENT_BINARY_DIR}/verification.doxyfile
+    -P ${CMAKE_SOURCE_DIR}/tests/verification/tools/doc.cmake
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} )
+
 else()
-  message("'doxygen' was not found but is required to generate verification document.")
+  message("doxygen, paraview, and gnuplot are required to generate verification document.")
   message("'VerificationDoc' custom target not added.")
 endif()

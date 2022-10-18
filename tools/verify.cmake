@@ -15,7 +15,7 @@ foreach( varName ${COMPARE_PY} )
     message(FATAL_ERROR "FAILED: ${TEST_COMMAND}")
   endif()
 
-  if(DOXYGEN)
+  if(PARAVIEW)
     # generate solution image if SOLUTION_PY defined
     message( "Generating image of problem solution.")
     set( TEST_COMMAND "pvbatch --force-offscreen-rendering ${varName}_display.py" )
@@ -23,7 +23,9 @@ foreach( varName ${COMPARE_PY} )
     if (HAD_ERROR)
       message("FAILED: ${TEST_COMMAND}")
     endif()
+  endif()
 
+  if(GNUPLOT)
     #  generate comparison plots
     message( "Generating comparison plots.")
     set( TEST_COMMAND "gnuplot ${varName}_plot.gnu" )

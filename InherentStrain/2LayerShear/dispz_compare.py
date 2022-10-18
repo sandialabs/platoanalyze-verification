@@ -1,4 +1,3 @@
-import line
 import verification_utils
 import math
 
@@ -12,10 +11,10 @@ n = 1.0    ## stiffness ratio (top layer stiffness / bottom layer stiffness)
 t = 0.1    ## layer thickness (z)
 e = 0.01   ## inherent strain
 
-variable = {'type': 'vector', 'dim': 3, 'component': 2, 'name': 'total displacement ', 'time': 1.0}
+variable = {'name': 'total displacement Z', 'time': 1.0}
 
 # get x, y data from results
-x_data, disp_data = line.getLineData('./output_data.exo', [-0.5, 0.0, 0.0], [0.5, 0.0, 0.0], variable)
+x_data, disp_data = verification_utils.getLineData('./output_data.exo', variable, 'plot')
 
 # sample analytical solution
 k = (6.0*e*(1.0+m)*(1.0+m))/(t*(3.0*(1.0+m)*(1.0+m)+(1.0+m*n)*(m*m+1.0/(m*n))))

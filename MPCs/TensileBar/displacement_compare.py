@@ -1,4 +1,3 @@
-import line
 import verification_utils
 import math
 
@@ -9,10 +8,10 @@ A = 1.0     ## area
 E = 1.0e8   ## Young's modulus
 F = 4.0e3   ## applied force (N)
 
-variable = {'type': 'vector', 'dim': 3, 'name': 'displacement '}
+variable = {'name': 'displacement X'}
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data.exo', [-1.5, 0, 0], [3.5, 0, 0], variable)
+x_data, y_data = verification_utils.getLineData('./output_data.exo', variable, 'plot')
 
 # sample analytical solution
 a_data = [F/E/A*(x_data[i]) for i in range(len(x_data))]

@@ -1,43 +1,40 @@
+## /home/jrobbin/opt/cubit/15.3/bin/cubitx
+## Cubit Version 15.3
+## Cubit Build 413520
+## Revised 2018-09-20 09:38:41 -0600 (Thu, 20 Sep 2018)
+## Running 10/18/2022 08:34:03 AM
+## Command Options:
 reset
 version
-
-bri x 2.5 y 1 z 1
-vol 1 size 0.2
-vol 1 scheme tetmesh
-mesh vol 1
-
-bri x 2.5 y 1 z 1
-vol 2 move x 2.5
-vol 2 size 0.25
-vol 2 scheme tetmesh
-mesh vol 2
-
-block 1 vol 1
-block 1 element type tetra
+create brick x 2.5 y 1 z 1
+webcut volume all with plane yplane
+webcut volume all with plane zplane
+imprint all
+merge all
+volume all size 0.2
+volume all scheme tetmesh
+mesh volume all
+create brick x 2.5 y 1 z 1
+volume 5 move x 2.5
+webcut volume 5 with plane yplane
+webcut volume 5 6 with plane zplane
+imprint volume 5 6 7 8
+merge volume 5 6 7 8
+volume 5 6 7 8 size 0.25
+volume 5 6 7 8 scheme tetmesh
+mesh volume 5 6 7 8
+block 1 volume 1 2 3 4
+block 1 element type TETRA
 block 1 name "block_1"
-
-block 2 vol 2
-block 2 element type tetra
+block 2 volume 5 6 7 8
+block 2 element type TETRA
 block 2 name "block_2"
-
-sideset 1 surf 12
-sideset 1 name "ss_xl"
-
-nodeset 1 surf 4
+sideset 1 surface 67 69 55 62
+sideset 1 name "ss_x1"
+nodeset 1 surface 35 29 23 21
 nodeset 1 name "ns_x0"
-
-nodeset 2 surf 6
+nodeset 2 surface 31 33 19 26
 nodeset 2 name "Child"
-
+nodeset 3 curve 29 89
+nodeset 3 name "plot"
 export mesh "two_block_tensile.exo" overwrite
-
-
-
-
-
-
-
-
-
-
-
