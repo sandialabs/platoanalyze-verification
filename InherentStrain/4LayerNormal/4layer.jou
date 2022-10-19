@@ -10,17 +10,21 @@ move volume all z -0.25
 webcut volume all with plane zplane
 webcut volume all with plane zplane offset 0.25
 webcut volume all with plane zplane offset 0.5
+webcut volume all with plane xplane
+webcut volume all with plane yplane
 imprint all
 merge all
 volume all scheme tetmesh
 volume all size 0.025
 mesh volume all
-block 1 volume 2
+block 1 volume 2 6 10 14
 block 1 name "base"
-block 2 volume all except volume 2
+block 2 volume all except volume 2 6 10 14
 block 2 name "print"
-sideset 1 surface 2
+sideset 1 surface 129 91 135 93
 sideset 1 name "bottom"
-sideset 2 surface 1
+sideset 2 surface 123 121 79 85
 sideset 2 name "top"
+nodeset 1 curve 125 173 157 141
+nodeset 1 name "plot"
 export mesh "4layer.exo" overwrite

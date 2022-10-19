@@ -6,15 +6,21 @@
 ## Command Options:
 create brick x 1 y 1 z 0.1
 webcut volume all with plane zplane
+webcut volume 1 with plane xplane
+webcut volume 1 3 with plane yplane
+webcut volume 2 with plane xplane
+webcut volume 2 6 with plane yplane
 imprint all
 merge all
 volume all scheme tetmesh
 volume all size 0.008
 mesh volume all
-block 1 volume 2
+block 1 volume 2 6 7 8
 block 1 name "layer_1"
-block 2 volume 1
+block 2 volume 1 3 4 5
 block 2 name "layer_2"
-sideset 1 surface 9 15
+sideset 1 surface 46 76 68 38
 sideset 1 name "-x"
+nodeset 1 curve 62 48
+nodeset 1 name "plot"
 export mesh "bilayer.exo" overwrite

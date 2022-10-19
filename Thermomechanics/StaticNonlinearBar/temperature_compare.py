@@ -1,4 +1,3 @@
-import line
 import verification_utils
 import math
 
@@ -24,7 +23,7 @@ verification_utils.printErrorTolerance(tol=1e-2)
 variable = {'name': 'temperature'}
 
 # get x, y data from results
-x_data, y_data = line.getLineData('./output_data.exo', [-0.5, 0, 0], [0.5, 0, 0], variable)
+x_data, y_data = verification_utils.getLineData('./output_data.exo', variable, 'plot')
 
 # sample analytical temperature solution
 a_data = [temperature(x_data[i]) for i in range(len(x_data))]

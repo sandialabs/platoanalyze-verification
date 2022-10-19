@@ -5,13 +5,19 @@
 ## Running 06/09/2020 01:18:06 PM
 ## Command Options:
 create brick x 1 y 0.05 z 0.05
+webcut body all with plane yplane
+webcut body all with plane zplane
+imprint all
+merge all
 volume all scheme tetmesh
 volume all size 0.0125
 mesh volume all
-sideset 2 surface 6
+sideset 2 surface 19 26 31 33
 sideset 2 name "x1"
-sideset 1 surface 4
+sideset 1 surface 21 23 29 35
 sideset 1 name "x0"
 block 1 volume all
 block 1 name "block_1"
+nodeset 1 curve 29
+nodeset 1 name "plot"
 export mesh "1dbar.exo" overwrite
