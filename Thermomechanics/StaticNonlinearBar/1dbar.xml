@@ -101,6 +101,9 @@
       <Parameter name='Tolerance' type='double' value='1e-8'/>
     </ParameterList>
 -->
+    <ParameterList  name="Linear Solver">
+      <Parameter  name="Solver Stack" type="string" value="AmgX"/>
+    </ParameterList>
   </ParameterList>
 
 </ParameterList>
