@@ -20,6 +20,8 @@ endif()
 ADD_SUBDIRECTORY(MPCs/TensileBar)
 ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
 ADD_SUBDIRECTORY(Thermal/LinearThermal)
+endif()
+if(AMGX_FOUND)
 ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
 endif()
 
