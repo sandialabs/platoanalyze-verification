@@ -2,7 +2,7 @@ import verification_utils
 import math
 
 # OBLIGATORY:  the test harness looks for '#L2_error_norm_tolerance' 
-verification_utils.printErrorTolerance(tol=1e-5)
+verification_utils.printErrorTolerance(tol=3e-4)
 
 A = 1.0     ## area
 E = 1.0e8   ## Young's modulus

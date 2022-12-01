@@ -7,7 +7,7 @@
   <ParameterList name="Plato Problem">
     <Parameter name="Physics"            type="string"  value="Mechanical"/>
     <Parameter name="PDE Constraint"     type="string"  value="Elliptic"/>
-    <Parameter name="Self-Adjoint"       type="bool"    value="true"/>
+    <Parameter name="Self-Adjoint"       type="bool"    value="false"/>
 
     <ParameterList name="Criteria">
       <ParameterList name="Volume">
@@ -40,15 +40,7 @@
     </ParameterList>
 
     <ParameterList  name="Linear Solver">
-      <Parameter  name="Solver Stack" type="string" value="Tpetra"/>
-      <Parameter name="Solver Package" type="string" value="belos"/>
-      <Parameter name="Preconditioner Package" type="string" value="ifpack2"/>
-      <ParameterList name="Preconditioner Options">
-        <Parameter name="tentative: calculate qr" type="bool" value="false"/>
-      </ParameterList>
-      <Parameter name="Display Iterations" type="int" value="10"/>
-      <Parameter name="Iterations" type="int" value="10000"/>
-      <Parameter name="Tolerance" type="double" value="1e-6"/>
+      <Parameter  name="Solver Stack" type="string" value="AmgX"/>
     </ParameterList>
 
     <ParameterList name="Spatial Model">
@@ -78,7 +70,7 @@
         <ParameterList name="Pair 1">
           <Parameter name="Initial Gap" type="Array(double)" value="{0.0, 0.0, 0.0}"/>
           <Parameter name="Penalty Type" type="string" value="tensor"/>
-          <Parameter name="Penalty Value" type="Array(double)" value="{1.0e10, 1.0e10, 1.0e10}"/>
+          <Parameter name="Penalty Value" type="Array(double)" value="{1.0e8, 1.0e8, 1.0e8}"/>
           <ParameterList name="A Surface">
             <Parameter name="Child Sideset" type="string" value="block1_child"/>
             <Parameter name="Parent Block" type="string" value="block_2"/>
