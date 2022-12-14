@@ -21,6 +21,8 @@ ADD_SUBDIRECTORY(Assemblies/MPCs)
 ADD_SUBDIRECTORY(Assemblies/CompliantContact)
 ADD_SUBDIRECTORY(Thermal/NonlinearThermal)
 ADD_SUBDIRECTORY(Thermal/LinearThermal)
+endif()
+if(AMGX_FOUND)
 ADD_SUBDIRECTORY(Thermomechanics/StaticNonlinearBar)
 endif()
 
