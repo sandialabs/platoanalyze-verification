@@ -21,7 +21,7 @@
     </ParameterList>
 
     <ParameterList name="Newton Iteration">
-      <Parameter name="Maximum Iterations" type="int" value="5"/>
+      <Parameter name="Maximum Iterations" type="int" value="10"/>
       <Parameter name="Increment Tolerance" type="double" value="1e-8"/>
     </ParameterList>
 

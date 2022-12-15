@@ -9,7 +9,7 @@
     <Parameter name="PDE Constraint"     type="string"  value="Elliptic"/>
 
     <ParameterList name="Newton Iteration">
-      <Parameter name="Maximum Iterations" type="int" value="4"/>
+      <Parameter name="Maximum Iterations" type="int" value="15"/>
       <Parameter name="Increment Tolerance" type="double" value="1e-8"/>
     </ParameterList>
 
