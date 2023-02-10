@@ -29,11 +29,11 @@ The domain and boundary conditions reduce to a one-dimensional problem:
 
 \f$ \frac{d^2 T}{d x^2} = 0 \f$ \n
 \f$ T(x) = T^f \f$ on \f$ x=1 \f$ \n
-\f$ -k \frac{dT}{dx} = q^f \f$ on \f$ x=-1 \f$,
+\f$ k \frac{dT}{dx} = q^f \f$ on \f$ x=-1 \f$,
 
 the solution of which is:
 
-\f$ T(x) = T^f - \frac{q^f}{k} (l - x) \f$.
+\f$ T(x) = T^f + \frac{q^f}{k} (l - x) \f$.
 
 <li> <b>Comparison:</b> </li>
 This 1D problem is solved using Plato Analyze on a 3D mesh using the following data:
