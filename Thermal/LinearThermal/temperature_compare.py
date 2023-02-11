@@ -15,7 +15,7 @@ variable = {'name': 'temperature'}
 x_data, y_data = verification_utils.getLineData('./output_data.exo', variable, 'plot')
 
 # sample analytical solution
-a_data = [T - q/k*(l - x_data[i]) for i in range(len(x_data))]
+a_data = [T + q/k*(l - x_data[i]) for i in range(len(x_data))]
 
 # compute error norm
 verification_utils.computeAndPrintErrorNorm(y_data, a_data)
