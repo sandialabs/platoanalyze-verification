@@ -161,7 +161,7 @@ objective = analyze.exportData("Objective Value", "SCALAR")
 analyze.finalize()
 
 goldCGx = offsetX
-computedCGx = np.sqrt(objective)*2.0*radius
+computedCGx = np.sqrt(objective)
 errorCGx = np.abs(computedCGx - goldCGx) / goldCGx
 print("\n CGx:")
 print("Gold: ", goldCGx)
@@ -179,7 +179,7 @@ objective = analyze.exportData("Objective Value", "SCALAR")
 analyze.finalize()
 
 goldCGy = offsetY
-computedCGy = np.sqrt(objective)*2.0*radius
+computedCGy = np.sqrt(objective)
 errorCGy = np.abs(computedCGy - goldCGy) / goldCGy
 print("\n CGy:")
 print("Gold: ", goldCGy)
@@ -197,7 +197,7 @@ objective = analyze.exportData("Objective Value", "SCALAR")
 analyze.finalize()
 
 goldCGz = offsetZ
-computedCGz = np.sqrt(objective)*height
+computedCGz = np.sqrt(objective)
 errorCGz = np.abs(computedCGz - goldCGz) / goldCGz
 print("\n CGz:")
 print("Gold: ", goldCGz)
