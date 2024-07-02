@@ -1,0 +1,1 @@
+add_verification_test("block.xml" "output_data" "temperature" "amgx.json;block.exo;temperature_plot.gnu;NonlinearThermal_layout.png;index.dox")

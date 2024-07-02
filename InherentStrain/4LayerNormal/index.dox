@@ -1,0 +1,21 @@
+/**
+\page PA_Verification_4LayerNormal Four Layer Normal
+
+<ul>
+<li> <b>Problem definition:</b> </li>
+Three layers (thickness l=0.25) are successively deposited onto a substrate (thickness l=0.25).  The deposited layers have an inherent strain in the build direction (z) only of \f$ \epsilon^{IS} = 0.01\f$.  The bottom of the substrate and top of the final layer are fully constrained, and Poisson's ratio is zero, so the problem is effectively one-dimensional.  The displacement along the build direction is:
+
+\f$ u(z) = -z \epsilon^{IS}*l \ if \ 0<z \le l \f$ \n
+\f$ u(z) = (1-l)*\epsilon^{IS}*z - \epsilon^{IS}*l \ if \ l<z \le 2l \f$ \n
+\f$ u(z) = (1-l)*\epsilon^{IS}*z - 2 \epsilon^{IS}*l \ if \ 2l<z \le 3l \f$ \n
+\f$ u(z) = (1-l)*\epsilon^{IS}*z - 3 \epsilon^{IS}*l \ if \ 3l<z \le 4l \f$ \n
+
+The layout, solution, and comparison with the analytical solution is shown below:
+
+\image html ./4LayerNormal_solution.png "Displacement solution" width=600px
+\image latex ./4LayerNormal_solution.png "Displacement solution" width=10cm
+\image html ./4LayerNormal_comparison.png "Computed vs Analytical" width=600px
+\image latex ./4LayerNormal_comparison.eps "Computed vs Analytical" width=10cm
+
+</ul>
+*/

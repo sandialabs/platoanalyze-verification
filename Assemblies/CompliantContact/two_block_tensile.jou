@@ -1,0 +1,47 @@
+reset
+version
+
+create brick x 2.5 y 1 z 1
+webcut volume all with plane yplane
+webcut volume all with plane zplane
+imprint all
+merge all
+volume all size 0.2
+volume all scheme tetmesh
+mesh volume all
+
+create brick x 2.5 y 1 z 1
+volume 5 move x 2.5
+webcut volume 5 with plane yplane
+webcut volume 5 6 with plane zplane
+imprint volume 5 6 7 8
+merge volume 5 6 7 8
+volume 5 6 7 8 size 0.25
+volume 5 6 7 8 scheme tetmesh
+mesh volume 5 6 7 8
+
+block 1 volume 1 2 3 4
+block 1 element type TETRA
+block 1 name "block_1"
+
+block 2 volume 5 6 7 8
+block 2 element type TETRA
+block 2 name "block_2"
+
+sideset 1 surface 67 69 55 62
+sideset 1 name "ss_x1"
+
+nodeset 1 surface 35 29 23 21
+nodeset 1 name "ns_x0"
+
+sideset 2 surface 31 33 19 26
+sideset 2 name "block1_child"
+
+sideset 3 surface 57 59 65 71
+sideset 3 name "block2_child"
+
+nodeset 2 curve 29 89
+nodeset 2 name "plot"
+
+export mesh "two_block_tensile.exo" overwrite
+

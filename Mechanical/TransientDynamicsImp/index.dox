@@ -1,0 +1,43 @@
+/**
+\page PA_Verification_TransientDynamicsImp Transient dynamic mechanics, implicit time integration
+
+<ul>
+<li> <b>Problem definition:</b> </li>
+Consider a copper bar of constant cross section and homogeneous material. The bar is built-in on both sides such that the deflection of the bar can be modeled with the wave equation :
+
+\f$ \rho  \ddot{u} = T  \nabla^2 u \f$
+
+where \f$ u \f$ is the deflection of the bar, \f$ T \f$ is the young's modulus, and  \f$ \rho \f$ is the mass density. 
+\n The boundary conditions for bar are:
+
+\f$ u(0,t) = 0 \f$ \n
+\f$ u(L,t) = 0 \f$ \n
+
+where L is the length of the bar. The initial conditions for the bar are:
+
+\f$ u(x,0) = 3sin(2\pi x) \f$ \n
+\f$ u_t(x,0) = 0 \f$ \n
+
+Through separation of variables, the analytical solution is:
+
+\f$ u(x,t) = \sum\limits_{n=1}^\infty (B_ncos(\lambda_n t) + B^*_nsin(\lambda_n t))sin(\frac{n\pi}{L}) \f$
+
+<li> <b>Comparison:</b> </li>
+This 1D problem is solved using Plato Analyze on a 3D mesh using the following data:
+
+\f$ \rho = 2700 g/m^3 \f$ \n
+\f$ E = 6.8 * 10^10 Pa \f$
+\f$ L = 1 \  m \f$
+
+
+The layout, solution, and comparison with the analytical solution is shown below:
+
+\image html ./TransientDynamicsImp_layout.png "Finite element mesh" width=600px
+\image latex ./TransientDynamicsImp_layout.png "Finite element mesh" width=10cm
+\image html ./TransientDynamicsImp_solution.png "Displacement solution" width=600px
+\image latex ./TransientDynamicsImp_solution.png "Displacement solution" width=10cm
+\image html ./TransientDynamicsImp_comparison.png "Computed vs Analytical" width=600px
+\image latex ./TransientDynamicsImp_comparison.eps "Computed vs Analytical" width=10cm
+
+</ul>
+*/

@@ -1,0 +1,1 @@
+add_verification_test("bilayer.xml" "output_data" "dispz" "amgx.json;bilayer.exo;dispz_plot.gnu;index.dox")

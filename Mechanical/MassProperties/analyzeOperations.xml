@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Operation>
+  <Function>ComputeCriterionValue</Function>
+  <Name>Compute Criterion Value</Name>
+  <Criterion>My Objective</Criterion>
+  <Target>0.0</Target>
+  <Input>
+    <ArgumentName>Topology</ArgumentName>
+  </Input>
+  <Output>
+    <Argument>Value</Argument>
+    <ArgumentName>Objective Value</ArgumentName>
+  </Output>
+</Operation>
