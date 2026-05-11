@@ -24,15 +24,6 @@ macro(add_verification_test CONFIG_FILE OUTPUT_DATA COMPARE_VAR_NAMES ADDITIONAL
     # copy some verification test utility files
     configure_file(${CMAKE_SOURCE_DIR}/tests/verification/tools/verification_utils.py ${CMAKE_CURRENT_BINARY_DIR}/verification_utils.py COPYONLY)
 
-    if(NOT PLATOANALYZE_ENABLE_ENGINEMESH)
-        # Replace with vtk versions
-        foreach(compare_name ${COMPARE_VAR_NAMES})
-            configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${compare_name}_compare_vtk.py ${CMAKE_CURRENT_BINARY_DIR}/${compare_name}_compare.py COPYONLY)
-            configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${compare_name}_display_vtk.py ${CMAKE_CURRENT_BINARY_DIR}/${compare_name}_display.py COPYONLY)
-        endforeach(compare_name)
-        configure_file(${CMAKE_SOURCE_DIR}/tests/verification/tools/line_vtk.py ${CMAKE_CURRENT_BINARY_DIR}/line.py COPYONLY)
-    endif()
-
     get_filename_component(testDirName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
     set( TEST_NAME ${testDirName} )
 
